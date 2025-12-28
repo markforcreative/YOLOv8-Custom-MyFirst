@@ -14,6 +14,6 @@
 
 ## 训练参数
 - 模型：YOLOv8n
-- epochs：150
+- epochs：100
 - batch：32
 - 最终精度：mAP50=0.995
