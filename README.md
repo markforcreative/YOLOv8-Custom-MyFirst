@@ -67,3 +67,26 @@ The Android application source code that uses this model can be found here:
 ## 📱 安卓端部署
 使用此模型的 Android 应用源代码请访问下方链接：
 👉 **[YOLOv8-TFLite-Custom-Android-MyFirst](https://github.com/markforcreative/YOLOv8-TFLite-Custom-Android-MyFirst)**
+
+
+## 📂 Dataset (数据集)
+
+> **Note**: The specific dataset used for training this model is **private** and is not included in this repository.
+> 
+> **注意**：本项目训练所使用的具体数据集为**私有数据**，暂不予公开。
+
+If you want to train your own model, please prepare your dataset in the standard YOLO format as follows:
+如果您想训练自己的模型，请按照以下标准的 YOLO 格式准备您的数据集：
+
+```text
+datasets/
+└── my_datasets/
+    ├── images/
+    │   ├── train/
+    │   └── val/          
+    └── labels/
+        ├── train/
+        └── val/
+```
+Sample images can be found in assets/samples/ for testing inference.
+（您可以在 assets/samples/ 目录下找到用于测试推理的样本图片。）
