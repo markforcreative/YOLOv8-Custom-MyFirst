@@ -6,17 +6,38 @@
 
 <div id="english"></div>
 
+**⚠️ WARNING: Environment Requirement**
+This project is optimized for **Linux** or **Windows Subsystem for Linux (WSL2)**.
+Running this project directly on native Windows is **NOT recommended** because the TFLite export process relies on specific dependencies that conflict in Windows. Please use WSL2.
+
 ## 📖 Introduction
 This repository contains the training scripts and configuration for a custom **YOLOv8** object detection model. The model is trained to detect specific objects: **Nongfu Spring bottles (fs_bottle)** and **Powerbanks**.
 
 The trained model is optimized and exported for edge deployment on Android devices.
 
 ## 🛠️ Environment & Requirements
-- **Hardware**: Trained on NVIDIA RTX 4070 (12GB VRAM).
-- **System**: Windows 11 + WSL2 (Ubuntu).
-- **Framework**: Ultralytics YOLOv8, PyTorch.
+- **System**: Linux / WSL2 (Ubuntu) (Mandatory for TFLite export)
+- **Hardware**: Trained on NVIDIA RTX 4070 (12GB VRAM)
+- **Framework**: Ultralytics YOLOv8, PyTorch
+- **Dependencies**: See `requirements.txt`
 
-## 🚀 Quick Start
+## 📂 Dataset
+**Note**: The specific dataset used for training this model is **private** and is not included in this repository.
+
+If you want to train your own model, please prepare your dataset in the standard YOLO structure as follows (matching `config/fs_powerbank.yaml`):
+
+```text
+datasets/
+└── my_datasets/
+    ├── images/
+    │   ├── train/      # Training images
+    │   └── val/        # Validation images
+    └── labels/
+        ├── train/      # Training labels
+        └── val/        # Validation labels
+```
+
+## 🚀 Quick Start (Run in WSL2)
 1.  Install dependencies:
     ```bash
     pip install -r requirements.txt
@@ -26,8 +47,9 @@ The trained model is optimized and exported for edge deployment on Android devic
     ```bash
     python train.py
     ```
-4.  Export to TFLite (for Android):
+4.  Export to TFLite (Android compatible):
     ```bash
+    # Note: Ensure you are in a Linux environment for this step
     yolo export model=best.pt format=tflite
     ```
 
@@ -39,54 +61,52 @@ The Android application source code that uses this model can be found here:
 
 <div id="简体中文"></div>
 
+**⚠️ 环境警告**
+本项目针对 **Linux** 或 **WSL2** 环境进行了优化。**强烈不建议**在原生 Windows 环境下直接运行，以免遇到 TFLite 导出时的依赖冲突。请务必使用 WSL2。
+
 ## 📖 简介
 本仓库包含自定义 **YOLOv8** 目标检测模型的训练脚本和配置文件。该模型专门针对 **农夫山泉瓶身 (fs_bottle)** 和 **充电宝 (powerbank)** 进行训练。
 
 训练后的模型已经过优化并导出，支持在 Android 设备上进行边缘端部署。
 
 ## 🛠️ 环境与依赖
-- **硬件**：使用 NVIDIA RTX 4070 (12GB 显存) 训练。
-- **系统**：Windows 11 + WSL2 (Ubuntu)。
-- **框架**：Ultralytics YOLOv8, PyTorch。
+- **系统**：Linux / WSL2 (Ubuntu) (TFLite 导出必须环境)
+- **硬件**：使用 NVIDIA RTX 4070 (12GB 显存) 训练
+- **框架**：Ultralytics YOLOv8, PyTorch
+- **依赖**：详见 `requirements.txt`
 
-## 🚀 快速开始
+## 📂 数据集说明
+**注意**：本项目训练所使用的具体数据集为**私有数据**，暂不予公开。
+
+如果您想训练自己的模型，请按照以下标准的 YOLO 格式准备您的数据集（需与 `config/fs_powerbank.yaml` 对应）：
+
+```text
+datasets/
+└── my_datasets/
+    ├── images/
+    │   ├── train/      # 训练集图片
+    │   └── val/        # 验证集图片
+    └── labels/
+        ├── train/      # 训练集标注
+        └── val/        # 验证集标注
+```
+
+## 🚀 快速开始 (请在 WSL2 中运行)
 1.  安装依赖：
     ```bash
     pip install -r requirements.txt
     ```
-2.  准备数据集（需符合 YOLO 格式）。
+2.  准备数据集。
 3.  运行训练：
     ```bash
     python train.py
     ```
-4.  导出为 TFLite 模型（用于安卓）：
+4.  导出为 TFLite 模型：
     ```bash
+    # 注意：请务必在 Linux/WSL2 环境下执行此步骤
     yolo export model=best.pt format=tflite
     ```
 
 ## 📱 安卓端部署
 使用此模型的 Android 应用源代码请访问下方链接：
 👉 **[YOLOv8-TFLite-Custom-Android-MyFirst](https://github.com/markforcreative/YOLOv8-TFLite-Custom-Android-MyFirst)**
-
-
-## 📂 Dataset (数据集)
-
-> **Note**: The specific dataset used for training this model is **private** and is not included in this repository.
-> 
-> **注意**：本项目训练所使用的具体数据集为**私有数据**，暂不予公开。
-
-If you want to train your own model, please prepare your dataset in the standard YOLO format as follows:
-如果您想训练自己的模型，请按照以下标准的 YOLO 格式准备您的数据集：
-
-```text
-datasets/
-└── my_datasets/
-    ├── images/
-    │   ├── train/
-    │   └── val/          
-    └── labels/
-        ├── train/
-        └── val/
-```
-Sample images can be found in assets/samples/ for testing inference.
-（您可以在 assets/samples/ 目录下找到用于测试推理的样本图片。）
