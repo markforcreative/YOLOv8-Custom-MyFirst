@@ -3,4 +3,4 @@ torch
 torchvision
 onnx
 onnx2tf
-tensorflow-cpu  # 导出用
+tensorflow-cpu
